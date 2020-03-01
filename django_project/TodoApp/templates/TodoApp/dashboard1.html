@@ -1,0 +1,74 @@
+{% extends 'TodoApp/base.html' %}
+
+
+
+{% block body %}
+<!-- ----------------------------------Bootstrap Model -------------------------------------------->
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Item</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Todo App</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group"  action='/add/' method='post'>
+            <label>Title</label>
+            <input type="text" class="form-control" name='item'>
+          
+            <label>Due Date</label>
+            <input type="date" class="form-control" name='date'>
+          </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-success btnclick">Submit</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+    $('.btnclick').click(function(){
+    //$.post(URL,data,callback)
+      $.post("/add/",{
+        item:"item",
+        date:"date",
+      },
+      
+      function(data, status){
+        alert(status)
+      });
+    });
+
+  });
+</script>
+
+<!-- ----------------------------End Bootstrap Model -------------------------------------------->
+
+
+<div class="row mt-4">
+  <div class="col">
+      <ul class="list-group">
+          {% for i in obj %}
+          <li class="list-group-item">{{i}}
+                  <div class="float-right">
+                      <a class="btn btn-primary btn-sm" href='/edit/{{i.id}}'>Edit</a>
+                      <a class="btn btn-danger btn-sm" href='/del/{{i.id}}'>delete</a>
+                  </div>  
+          </li>
+          {% endfor %}
+        </ul>
+  </div>
+</div>
+
+
+
+{% endblock body %}
