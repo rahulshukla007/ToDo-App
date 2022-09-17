@@ -1,0 +1,16 @@
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified some issues:
+
+WARNINGS:
+TodoApp.Todo: (models.W042) Auto-created primary key used when not defining a primary key type, by default 'django.db.models.AutoField'.
+	HINT: Configure the DEFAULT_AUTO_FIELD setting or the TodoappConfig.default_auto_field attribute to point to a subclass of AutoField, e.g. 'django.db.models.BigAutoField'.
+
+System check identified 1 issue (0 silenced).
+September 09, 2022 - 10:26:18
+Django version 4.1.1, using settings 'django_project.settings'
+Starting development server at http://0.0.0.0:8001/
+Quit the server with CONTROL-C.
+<QuerySet []>
+[09/Sep/2022 10:26:28] "GET /dashboard/ HTTP/1.1" 200 2139
