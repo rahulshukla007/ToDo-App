@@ -6,16 +6,22 @@ from django.http import HttpResponse
 from django.utils import timezone
 from  . models import Todo
 
+import logging
+logging.basicConfig(filename='main.log', encoding='utf-8', level=logging.DEBUG)
+
 
 def home(request):
     if request.method  == "GET":
         return render(request,'TodoApp/home.html')
     else:
         username = request.POST.get('uname')
+        logging.debug(f'This is username {username}')
         print(username)
         password = request.POST.get('psw')
+        logging.debug(f'This is username {password}')
         print(password)
         user = auth.authenticate(username = username, password = password)
+        logging.debug(f'This is username {user}')
         print(user)
         try:
             if user is not None:
@@ -30,6 +36,7 @@ def home(request):
 @login_required(login_url='Home')
 def dashboard(request):
     obj = Todo.objects.all().order_by('-date')
+    logging.debug(f'This is dashboard {obj}')
     print(obj)
     context = {'obj':obj}
     return render(request,'TodoApp/dashboard.html', context)
